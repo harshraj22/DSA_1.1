@@ -1,0 +1,17 @@
+This assignment is not for evaluation. But, it is highly recommended that you complete this. Doing this will help you to do the upcoming assignments which will be evaluated. Submission of a working program by 10th August (Saturday) is mandatory to get an attendance for today’s (5th Aug) lab, apart from attending the lab. All submissions should be through Moodle. Submission through emails will be ignored.
+
+
+You will be given with a file which contains one integer per line. Your program should take as input the name of a file as a command-line argument. The output should be written to a file named ‘output.txt’ which should contain only 5 lines of data:
+
+The first line should contain the number of numbers in the file, 
+
+The second line should contain the minimum number present in the file
+
+The third line should contain the maximum number present in the file
+
+The fourth line should contain the sum of the numbers
+
+The fifth line should contain the average of numbers - upto two decimal points.
+
+
+Please use either C or C++ for solving this problem.
