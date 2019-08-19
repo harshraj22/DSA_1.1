@@ -100,31 +100,46 @@ public:
             return;
         }
     }
+    T at(int pos){
+        if(pos>tail_index || pos<0){
+            cout<<"Can't access unavailable indexes\n";
+            raise(SIGSEGV);
+        }
+        node *temp = head;
+        int cur_index=0;
+        while(cur_index!=pos){
+            cur_index+=1;
+            temp=temp->next;
+        }
+        return temp->data;
+    }
 };
 
 int main(){
 /*
-    Test cases :
-
+    // Test cases :
     Doubly_linked_list<int> l;
-
     l.insert(23,0);
     cout<<"size of linked list is "<<l.size()<<'\n';
     l.insert(24,0);
     cout<<"size of linked list is "<<l.size()<<'\n';
     l.insert(25,1);
     cout<<"size of linked list is "<<l.size()<<'\n';
-    l.insert(26,-1);
-    cout<<"size of linked list is "<<l.size()<<'\n';
-    l.insert(27,2);
-    cout<<"size of linked list is "<<l.size()<<'\n';
-    l.insert(28,12);
-    cout<<"size of linked list is "<<l.size()<<'\n';
+
+    for(int i=0;i<l.size();i++)
+        cout<<"value at "<<i<<" is "<<l.at(i)<<endl;
+
+    // l.insert(26,-1);
+    // cout<<"size of linked list is "<<l.size()<<'\n';
+    // l.insert(27,2);
+    // cout<<"size of linked list is "<<l.size()<<'\n';
+    // l.insert(28,12);
+    // cout<<"size of linked list is "<<l.size()<<'\n';
+
 */
 /*
     Causion:
     Need to handle cases where typecasting of data happens,for example,
-
     Doubly_linked_list<int> l;
     l.insert('a',0);
     l.insert(2.3,0);
