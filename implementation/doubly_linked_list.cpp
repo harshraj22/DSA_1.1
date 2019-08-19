@@ -100,6 +100,50 @@ public:
             return;
         }
     }
+
+    void erase(int pos){
+        if(pos>tail_index+1 || pos<0){
+            cout<<"Can't erase outside the bounds\n";
+            raise(SIGSEGV);
+        }
+        else if(pos==0){
+            //if erasing the head
+            head = head->next;
+            tail_index-=1;
+            return ;
+        }        
+        else if(pos==tail_index){
+            //if erasing the tail element
+            node * temp=head;
+            //temp represents the node just befor the node to be deleted
+            int cur_index=0;
+            while(cur_index+1<pos){
+                cur_index+=1;
+                temp=temp->next;
+            }
+            temp->next = nullptr;
+            
+            tail_index-=1;
+            return;
+        }
+        else{
+            //erasing the element somewhere in middle
+            node* temp=head;
+            //temp denotes the node to be deleted
+            int cur_index=0;
+            while(cur_index!=pos){
+                cur_index+=1;
+                temp=temp->next;
+            }
+            //link the nodes before and after the node to be deleted.
+            temp->prev->next=temp->next;
+            temp->next->prev=temp->prev;
+            
+            tail_index-=1;
+            return ;
+        }
+    }
+
     T at(int pos){
         if(pos>tail_index || pos<0){
             cout<<"Can't access unavailable indexes\n";
@@ -125,6 +169,9 @@ int main(){
     cout<<"size of linked list is "<<l.size()<<'\n';
     l.insert(25,1);
     cout<<"size of linked list is "<<l.size()<<'\n';
+    l.erase(1);
+    l.erase(0);
+    l.erase(0);
 
     for(int i=0;i<l.size();i++)
         cout<<"value at "<<i<<" is "<<l.at(i)<<endl;
@@ -135,8 +182,8 @@ int main(){
     // cout<<"size of linked list is "<<l.size()<<'\n';
     // l.insert(28,12);
     // cout<<"size of linked list is "<<l.size()<<'\n';
-
 */
+
 /*
     Causion:
     Need to handle cases where typecasting of data happens,for example,
