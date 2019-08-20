@@ -71,9 +71,13 @@ public:
         else if(pos==tail_index+1){
             // adding elements after tail
             node * temp = head;
+            //reach to last node
             while(temp->next != nullptr)
                 temp =temp->next;
-            temp->data = value;
+            // link new node there
+            temp->next = new node;
+            temp->next->data = value;
+            temp->next->prev = temp;
             tail_index +=1;
             return ;
         }
@@ -168,6 +172,7 @@ int main(){
     l.insert(24,0);
     cout<<"size of linked list is "<<l.size()<<'\n';
     l.insert(25,1);
+    l.insert(123,2);
     cout<<"size of linked list is "<<l.size()<<'\n';
     l.erase(1);
     l.erase(0);
