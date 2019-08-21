@@ -42,6 +42,55 @@ private:
         else return this->_search(value,head->left);
     }
 
+    vector<T> _inorder(node * new_head){
+        vector<T> v;
+        //if reached at the leaf node
+        if(new_head==nullptr)
+            return v;
+        //recursively go to left subtree and find inorder traversal
+        auto res=this->_inorder(new_head->left);
+        v.insert(v.end(),res.begin(), res.end());
+        v.push_back(new_head->data);
+        //recursively go to right subtree and find inorder traversal
+        auto res2=this->_inorder(new_head->right);
+        v.insert(v.end(),res2.begin(), res2.end());
+        return v;
+    }
+
+    vector<T> _preorder(node *new_head){
+        vector<T> v;
+        //if reached at the leaf node
+        if(new_head==nullptr)
+            return v;
+
+        v.push_back(new_head->data);
+        //recursively go to left subtree and find inorder traversal
+        auto res=this->_inorder(new_head->left);
+        v.insert(v.end(),res.begin(), res.end());
+
+        //recursively go to right subtree and find inorder traversal
+        auto res2=this->_inorder(new_head->right);
+        v.insert(v.end(),res2.begin(), res2.end());
+        return v;
+    }
+
+    vector<T> _postorder(node *new_head){
+        vector<T> v;
+        //if reached at the leaf node
+        if(new_head==nullptr)
+            return v;
+        //recursively go to left subtree and find inorder traversal
+        auto res=this->_inorder(new_head->left);
+        v.insert(v.end(),res.begin(), res.end());
+
+        //recursively go to right subtree and find inorder traversal
+        auto res2=this->_inorder(new_head->right);
+        v.insert(v.end(),res2.begin(), res2.end());
+
+        v.push_back(new_head->data);
+        return v;      
+    }
+
 public:
     void print();
 
@@ -65,24 +114,37 @@ public:
     bool search(T value){
         return _search(value,head);
     }
-    vector<T> inorder();
-    vector<T> postorder();
-    vector<T> preorder();
+
+    vector<T> inorder(){
+        return _inorder(head);
+    }
+
+    vector<T> postorder(){
+        return _postorder(head);
+    }
+    vector<T> preorder(){
+        return _preorder(head);
+    }
 };
 
 int main(){
     // Binary_Search_Tree<int> b;
     // b.insert(1);
-    // b.print();
+    // // b.print();
     // b.insert(2);
-    // b.print();
+    // // b.print();
     // b.insert(4);
-    // b.print();
+    // // b.print();
     // b.insert(3);
-    // b.print();
+    // // b.print();
     // for(int i=0;i<5;i++)
-    //     cout<<b.search(i)<<endl;
-    // cout<<b.search(5)<<" "<<b.search(4)<<endl;
+    //     b.insert(i);
+    //     // cout<<b.search(i)<<endl;
+    // // cout<<b.search(5)<<" "<<b.search(4)<<endl;
+    // auto v=b.postorder();
+    // for(auto it:v)
+    //     cout<<it<<" ";
+    // cout<<endl;
 
     return 0;
 }
