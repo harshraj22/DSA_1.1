@@ -111,6 +111,7 @@ public:
     }
 
     void erase(T value);
+    
     bool search(T value){
         return _search(value,head);
     }
