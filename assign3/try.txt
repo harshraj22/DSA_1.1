@@ -1,35 +1,8 @@
 insert 9
-sort
 extract-max
 insert 83
 insert 48
-maximum
 insert 26
 increase-key 1 69
 insert 86
-insert 33
-extract-max
-insert 14
-sort
-extract-max
-sort
-insert 41
-insert 50
-insert 78
-insert 38
-insert 37
-increase-key 4 96
-sort
-increase-key 7 16
-maximum
-insert 56
-increase-key 4 41
-insert 33
-sort
-maximum
-increase-key 3 92
-insert 53
-insert 11
-insert 88
-insert 85
 sort

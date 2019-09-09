@@ -18,7 +18,7 @@ class array_implementation_of_tree{
 };
 
 ofstream off("heap.txt");
-// #define off cout
+#define off cout
 
 template <typename T>
 class heap : public array_implementation_of_tree <T>{
@@ -83,6 +83,14 @@ class heap : public array_implementation_of_tree <T>{
 
 		// there is problem as child of 0 are not 1,2 : use 1 based indexing to correct. or separate evaluation for parent
 		void max_heapify(int pos){
+			if(pos >= this->last || 2*pos + 1 >= this->last)
+				return ;
+			else if(2*pos + 2 == this->last){
+				if(this->v[pos] < this->v[2*pos + 1])
+					swap(this->v[pos],this->v[2*pos +1]);
+				return;
+			}
+			
 			int max_val = max({this->v[pos],this->v[2*pos+1],this->v[2*pos + 2]});
 			if(max_val == this->v[pos])
 				return ;
@@ -97,9 +105,14 @@ class heap : public array_implementation_of_tree <T>{
 		}
 
 		vector<T> sort(){
+			// vector<T> vv = this->v;
+			// vv.resize(this->last);
+			// return vv;
+
 			vector<T> temp = this->v;
 			int unchanged = this->last;
 			while(this->last){
+				// cout << "v[0] is " << this->v[0] << endl;
 				swap(this->v[0], this->v[this->last-1]);
 				this->last -= 1;
 				max_heapify(0);
@@ -107,7 +120,7 @@ class heap : public array_implementation_of_tree <T>{
 			swap(temp,this->v);
 			swap(unchanged, this->last);
 			temp.resize(this->last);
-			reverse(temp.begin(), temp.end());
+			// reverse(temp.begin(), temp.end());
 			return temp;
 		}
 };
@@ -116,7 +129,7 @@ const int N = 1e6;
 
 int main(int argc, char** argv){
 	ifstream iff(argv[1]);
-	#define cin iff
+	// #define cin iff
 
 	heap<int> my_heap(N);
 	while(cin){
@@ -135,7 +148,7 @@ int main(int argc, char** argv){
 			my_heap.extract_maximum();
 		else if(s == "maximum")
 			off << my_heap.maximum();
-		else {
+		else if(s == "sort"){
 			for(auto it: my_heap.sort())
 				off << it << " ";
 			off << "\n";
