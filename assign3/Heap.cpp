@@ -18,7 +18,7 @@ class array_implementation_of_tree{
 };
 
 ofstream off("heap.txt");
-#define off cout
+// #define off cout
 
 template <typename T>
 class heap : public array_implementation_of_tree <T>{
@@ -129,7 +129,7 @@ const int N = 1e6;
 
 int main(int argc, char** argv){
 	ifstream iff(argv[1]);
-	// #define cin iff
+	#define cin iff
 
 	heap<int> my_heap(N);
 	while(cin){
