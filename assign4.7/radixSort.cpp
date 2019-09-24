@@ -48,7 +48,7 @@ class radix_sort{
         }
         void sort(){
             int lim = vec[0].size();
-            for(int i=0;i<lim;i++)
+            for(int i=lim-1;i>=0;i--)
                 countObject.sort_by(i);
             vec = countObject.return_sorted();
         }
