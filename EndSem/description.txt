@@ -1,0 +1,10 @@
+Task 1 :
+	find all distinct vertices (use std::set). This gives count of number of vertices.
+Task 2:
+	find all distinct edges (use std::set<pair>). This gives count of number of edges as all distinct pairs correspond to a directed edge. So each edge is counted twice (u,v) and (v,u). Find final answer by dividing the sizeof(set) by 2.
+Task 3 and 4:
+	We store the graph as adjacency list (vector of vector). So, at any index, size of vector gives the number of nodes attached directly to that index. i.e. no of nodes directly connected to node 'i' is sizeof(vector[i]). Use this idea to take min and max for each index and find min and max degree of graph.
+Task 5 and 6:
+	Eccentricity is defined as the greatest distance between v and any other vertex. Use Floyd Warshall algo to find the shortest distance between each pair of nodes in graph. Find eccentricity of each node using the calculated distance from Floyd Warshall. The radius of a graph is the minimum of eccentricities of the vertices of the graph.The diameter of a graph is the maximum of eccentricities of the vertices of the graph. Run a loop over calculated eccentricities of all vertices to find the radious and diameter.
+Task 7:
+	For each node in the graph, do a BFS to find cycles in the graph. While BFS, if a visited node is found reachable, either the node is its parent in the bfs tree (i.e. the current node is direct neighbour of reachable node) or we found a cycle. Use a temporary array to store parent of each node in bfs tree. If the reachable node is not parent, then we found a cycle. Update the value of girth in this case.
